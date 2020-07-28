@@ -5,13 +5,10 @@ function mniconn(varargin)
 P = inputParser;
 
 % ROI file - must be in src/rois and have matching -label.csv with ROI
-% names
-addOptional(P,'roi_niigz','BNST_LR.nii.gz')
+% names. Must be MNI space
+addOptional(P,'wroi_niigz','BNST_LR.nii.gz')
 
-% Preprocessed fMRI, outputs from connprep
-addOptional(P,'removegm_niigz','/INPUTS/fmri.nii.gz');
-addOptional(P,'keepgm_niigz','/INPUTS/fmri.nii.gz');
-addOptional(P,'meanfmri_niigz','/INPUTS/meanadfmri.nii.gz');
+% Preprocessed fMRI, outputs from connprep. MNI space only
 addOptional(P,'wremovegm_niigz','/INPUTS/fmri.nii.gz');
 addOptional(P,'wkeepgm_niigz','/INPUTS/fmri.nii.gz');
 addOptional(P,'wmeanfmri_niigz','/INPUTS/wmeanadfmri.nii.gz');
@@ -20,10 +17,8 @@ addOptional(P,'wmeanfmri_niigz','/INPUTS/wmeanadfmri.nii.gz');
 addOptional(P,'wedge_niigz','/INPUTS/redge_wgray.nii.gz');
 addOptional(P,'wbrainmask_niigz','/INPUTS/rwmask.nii.gz');
 
-% Bias corrected T1s and deformation field from cat12
-addOptional(P,'t1_niigz','/INPUTS/mt1.nii.gz');
+% Bias corrected T1 from cat12
 addOptional(P,'wt1_niigz','/INPUTS/wmt1.nii.gz');
-addOptional(P,'invdef_niigz','/INPUTS/iy_t1.nii.gz');
 
 % Smoothing to apply to connectivity maps
 addOptional(P,'fwhm','6');
@@ -48,15 +43,7 @@ disp(P)
 
 
 %% Process
-fsthalconnMNI_main( ...
-	out_dir,subject_dir,roiinfo_csv, ...
-	removegm_niigz,keepgm_niigz,wremovegm_niigz,wkeepgm_niigz, ...
-	wedge_niigz,wbrainmask_niigz, ...
-	wmeanfmri_niigz,meanfmri_niigz,t1_niigz,wt1_niigz,invdef_niigz, ...
-	fwhm, ...
-	project,subject,session,scan, ...
-	magick_path,src_path,fsl_path ...
-	);
+mniconn_main(P);
 
 
 %% Exit
