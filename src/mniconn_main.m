@@ -2,7 +2,7 @@ function mniconn_main(P)
 
 % Unzip images and copy to working location
 disp('File prep   -----------------------------------------------------------------------')
-[wremovegm_nii,wkeepgm_nii,wedge_nii,wbrainmask_nii,wmeanfmri_nii,wt1_nii,wroi_nii] ...
+[wremovegm_nii,wkeepgm_nii,wedge_nii,wbrainmask_nii,wmeanfmri_nii,wt1_nii,wroi_nii,roi_csv] ...
 	= prep_files(P);
 
 % SPM init
@@ -13,13 +13,13 @@ disp('ROI operations   ---------------------------------------------------------
 rwroi_nii = resample_roi(wroi_nii,wmeanfmri_nii);
 
 % Extract ROI time series from preprocessed fMRI
-roidata_removegm = extract_roidata(wremovegm_nii,rwroi_nii);
-roidata_keepgm = extract_roidata(wkeepgm_nii,rwroi_nii);
+roidata_removegm = extract_roidata(wremovegm_nii,rwroi_nii,roi_csv,'removegm');
+roidata_keepgm = extract_roidata(wkeepgm_nii,rwroi_nii,roi_csv,'keepgm');
 
 % Compute connectivity maps and matrices
 disp('Connectivity   --------------------------------------------------------------------')
-[connmap_removegm,connmat_removegm] = conncompute(roidata_removegm,wremovegm_nii);
-[connmap_keepgm,connmat_keepgm] = conncompute(roidata_keepgm,wkeepgm_nii);
+[connmap_removegm,connmat_removegm] = conncompute(roidata_removegm,wremovegm_nii,'removegm');
+[connmap_keepgm,connmat_keepgm] = conncompute(roidata_keepgm,wkeepgm_nii,'keepgm');
 
 
 % Smooth connectivity maps (?)
