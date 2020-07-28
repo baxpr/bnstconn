@@ -13,13 +13,13 @@ disp('ROI operations   ---------------------------------------------------------
 rwroi_nii = resample_roi(wroi_nii,wmeanfmri_nii);
 
 % Extract ROI time series from preprocessed fMRI
-roidata_removegm = extract_roidata(wremovegm_nii,rwroi_nii,roi_csv,inp.out_dir,'removegm');
-roidata_keepgm = extract_roidata(wkeepgm_nii,rwroi_nii,roi_csv,inp.out_dir,'keepgm');
+roidata_removegm = extract_roidata(wremovegm_nii,rwroi_nii,roi_csv,inp.out_dir,'wremovegm');
+roidata_keepgm = extract_roidata(wkeepgm_nii,rwroi_nii,roi_csv,inp.out_dir,'wkeepgm');
 
 % Compute connectivity maps and matrices
 disp('Connectivity   --------------------------------------------------------------------')
-conncompute(roidata_removegm,wremovegm_nii,inp.out_dir,'removegm');
-conncompute(roidata_keepgm,wkeepgm_nii,inp.out_dir,'keepgm');
+conncompute(roidata_removegm,wremovegm_nii,inp.out_dir,'wremovegm');
+conncompute(roidata_keepgm,wkeepgm_nii,inp.out_dir,'wkeepgm');
 
 % Mask files to a (lenient) brain mask to save space
  mask_mni(inp.out_dir)

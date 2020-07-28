@@ -36,8 +36,8 @@ function connmap {
 
 cd ${OUT}
 
-connmap connmaps/Z_BNST_L_removegm.nii BNST_L -6 3 0
-connmap connmaps/Z_BNST_R_removegm.nii BNST_R 6 3 0
+connmap connmaps/Z_BNST_L_wremovegm.nii BNST_L -6 3 0
+connmap connmaps/Z_BNST_R_wremovegm.nii BNST_R 6 3 0
 
 montage -mode concatenate \
   conn_mni_BNST_L.png conn_mni_BNST_R.png \
