@@ -1,4 +1,4 @@
-function roidata = extract_roidata(wfmri_nii,rwroi_nii,roi_csv,tag)
+function roidata = extract_roidata(wfmri_nii,rwroi_nii,roi_csv,out_dir,tag)
 
 % Load and count ROIs
 Vroi = spm_vol(rwroi_nii);
@@ -21,17 +21,16 @@ Yfmri = spm_read_vols(Vfmri);
 Yfmri = reshape(Yfmri,[],size(Yfmri,4))';
 
 % Extract mean time series
-FIXME WE ARE HERE
 roidata = table();
 for r = 1:height(roi_info)
-	roidata.(roi_info.Region{r})(:,1) = mean(Yfmri(:,Yroi(:)==roi_info.Label(r)),2);
+	voxelinds = Yroi(:)==roi_info.Label(r);
+	voxeldata = Yfmri(:,voxelinds);
+	roidata.(roi_info.Region{r})(:,1) = mean(voxeldata,2);
 end
 
 % Save ROI data to file
-%roidata = array2table(roidata,'VariableNames',rois.region);
-%roidata_csv = [out_dir '/roidata_' niitag '.csv'];
-%writetable(roidata,roidata_csv)
-
+roidata_csv = [out_dir '/roidata_' tag '.csv'];
+writetable(roidata,roidata_csv)
 
 return
 

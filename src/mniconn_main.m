@@ -1,9 +1,9 @@
-function mniconn_main(P)
+function mniconn_main(inp)
 
 % Unzip images and copy to working location
 disp('File prep   -----------------------------------------------------------------------')
 [wremovegm_nii,wkeepgm_nii,wedge_nii,wbrainmask_nii,wmeanfmri_nii,wt1_nii,wroi_nii,roi_csv] ...
-	= prep_files(P);
+	= prep_files(inp);
 
 % SPM init
 spm_jobman('initcfg');
@@ -13,8 +13,8 @@ disp('ROI operations   ---------------------------------------------------------
 rwroi_nii = resample_roi(wroi_nii,wmeanfmri_nii);
 
 % Extract ROI time series from preprocessed fMRI
-roidata_removegm = extract_roidata(wremovegm_nii,rwroi_nii,roi_csv,'removegm');
-roidata_keepgm = extract_roidata(wkeepgm_nii,rwroi_nii,roi_csv,'keepgm');
+roidata_removegm = extract_roidata(wremovegm_nii,rwroi_nii,roi_csv,inp.out_dir,'removegm');
+roidata_keepgm = extract_roidata(wkeepgm_nii,rwroi_nii,roi_csv,inp.out_dir,'keepgm');
 
 % Compute connectivity maps and matrices
 disp('Connectivity   --------------------------------------------------------------------')
@@ -33,14 +33,14 @@ disp('Connectivity   -----------------------------------------------------------
 
 % Mask MNI space connectivity maps (leniently) to reduce disk usage
 disp('Mask MNI results   ----------------------------------------------------------------')
-mask_mni(out_dir);
+mask_mni(inp.out_dir);
 
 % Generate PDF report
 disp('Make PDF   ------------------------------------------------------------------------')
-make_pdf(out_dir,t1_nii,wmeanfmri_nii,wt1_nii,magick_path,src_path,fsl_path, ...
+make_pdf(inp.out_dir,t1_nii,wmeanfmri_nii,wt1_nii,magick_path,src_path,fsl_path, ...
 	project,subject,session,scan);
 
 % Organize and clean up
 disp('Organize outputs   ----------------------------------------------------------------')
-organize_outputs(out_dir,roiinfo_csv);
+organize_outputs(inp.out_dir,roiinfo_csv);
 

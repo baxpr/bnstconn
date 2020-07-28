@@ -9,16 +9,16 @@ P = inputParser;
 addOptional(P,'wroi_niigz','BNST_LR.nii.gz')
 
 % Preprocessed fMRI, outputs from connprep. MNI space only
-addOptional(P,'wremovegm_niigz','/INPUTS/fmri.nii.gz');
-addOptional(P,'wkeepgm_niigz','/INPUTS/fmri.nii.gz');
-addOptional(P,'wmeanfmri_niigz','/INPUTS/wmeanadfmri.nii.gz');
+addOptional(P,'wremovegm_niigz','../INPUTS/filtered_removegm_noscrub_wadfmri.nii.gz');
+addOptional(P,'wkeepgm_niigz','../INPUTS/filtered_keepgm_noscrub_wadfmri.nii.gz');
+addOptional(P,'wmeanfmri_niigz','../INPUTS/wmeanadfmri.nii.gz');
 
 % Useful masks from connprep
-addOptional(P,'wedge_niigz','/INPUTS/redge_wgray.nii.gz');
-addOptional(P,'wbrainmask_niigz','/INPUTS/rwmask.nii.gz');
+addOptional(P,'wedge_niigz','../INPUTS/redge_wgray.nii.gz');
+addOptional(P,'wbrainmask_niigz','../INPUTS/rwmask.nii.gz');
 
 % Bias corrected T1 from cat12
-addOptional(P,'wt1_niigz','/INPUTS/wmt1.nii.gz');
+addOptional(P,'wt1_niigz','../INPUTS/wmt1.nii.gz');
 
 % Smoothing to apply to connectivity maps
 addOptional(P,'fwhm','6');
@@ -35,15 +35,15 @@ addOptional(P,'src_path','/opt/fsthalconnMNI/src');
 addOptional(P,'fsl_path','/usr/local/fsl/bin');
 
 % Where to store outputs
-addOptional(P,'out_dir','/OUTPUTS');
+addOptional(P,'out_dir','../OUTPUTS');
 
 % Parse
 parse(P,varargin{:});
-disp(P)
+disp(P.Results)
 
 
 %% Process
-mniconn_main(P);
+mniconn_main(P.Results);
 
 
 %% Exit
