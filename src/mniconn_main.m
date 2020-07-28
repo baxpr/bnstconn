@@ -2,7 +2,7 @@ function mniconn_main(inp)
 
 % Unzip images and copy to working location
 disp('File prep   -----------------------------------------------------------------------')
-[wremovegm_nii,wkeepgm_nii,wedge_nii,wbrainmask_nii,wmeanfmri_nii,wt1_nii,wroi_nii,roi_csv] ...
+[wremovegm_nii,wkeepgm_nii,wmeanfmri_nii,wt1_nii,wroi_nii,roi_csv] ...
 	= prep_files(inp);
 
 % SPM init
@@ -18,27 +18,16 @@ roidata_keepgm = extract_roidata(wkeepgm_nii,rwroi_nii,roi_csv,inp.out_dir,'keep
 
 % Compute connectivity maps and matrices
 disp('Connectivity   --------------------------------------------------------------------')
-[connmap_removegm,connmat_removegm] = conncompute(roidata_removegm,wremovegm_nii,'removegm');
-[connmap_keepgm,connmat_keepgm] = conncompute(roidata_keepgm,wkeepgm_nii,'keepgm');
+conncompute(roidata_removegm,wremovegm_nii,inp.out_dir,'removegm');
+conncompute(roidata_keepgm,wkeepgm_nii,inp.out_dir,'keepgm');
 
-
-% Smooth connectivity maps (?)
-
-% Mask MNI space connectivity maps (leniently) to reduce disk usage
-
-% Generate PDF report
-
-% Organize and clean up
-
-
-% Mask MNI space connectivity maps (leniently) to reduce disk usage
-disp('Mask MNI results   ----------------------------------------------------------------')
-mask_mni(inp.out_dir);
+% Mask files to a (lenient) brain mask to save space
+ mask_mni(inp.out_dir)
 
 % Generate PDF report
 disp('Make PDF   ------------------------------------------------------------------------')
-make_pdf(inp.out_dir,t1_nii,wmeanfmri_nii,wt1_nii,magick_path,src_path,fsl_path, ...
-	project,subject,session,scan);
+make_pdf(inp.out_dir,wmeanfmri_nii,wt1_nii,inp.magick_path,inp.src_path,inp.fsl_path, ...
+	inp.project,inp.subject,inp.session,inp.scan);
 
 % Organize and clean up
 disp('Organize outputs   ----------------------------------------------------------------')

@@ -14,7 +14,6 @@ addOptional(P,'wkeepgm_niigz','../INPUTS/filtered_keepgm_noscrub_wadfmri.nii.gz'
 addOptional(P,'wmeanfmri_niigz','../INPUTS/wmeanadfmri.nii.gz');
 
 % Useful masks from connprep
-addOptional(P,'wedge_niigz','../INPUTS/redge_wgray.nii.gz');
 addOptional(P,'wbrainmask_niigz','../INPUTS/rwmask.nii.gz');
 
 % Bias corrected T1 from cat12
