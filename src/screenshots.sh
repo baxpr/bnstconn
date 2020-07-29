@@ -2,8 +2,12 @@
 #
 # Create a bunch of screenshots to put in the PDF report.
 
+# Set up freesurfer
 export FREESURFER_HOME=/usr/local/freesurfer
 . $FREESURFER_HOME/SetUpFreeSurfer.sh
+
+# Set up FSL (we only use fslstats so no need for the full setup)
+export FSLOUTPUTTYPE=NIFTI_GZ
 
 # MNI space connectivity maps
 ss_conn_mni.sh
