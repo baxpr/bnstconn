@@ -27,7 +27,7 @@ function connmap {
 	  -ras 0 -18 ${5} \
 	  -ss conn_mni_${2}_axi.png
 
-	montage -mode concatenate \
+	montage -mode concatenate -title "${2}" -stroke white -fill white \
 	  conn_mni_${2}_sag.png conn_mni_${2}_cor.png conn_mni_${2}_axi.png \
 	  -tile 3x -quality 100 -background black -gravity center \
 	  -border 10 -bordercolor black conn_mni_${2}.png
@@ -38,12 +38,13 @@ function connmap {
 
 cd ${OUT}
 
-# Make images for each seed ROI
+# Make images for each seed ROI (up to four)
 r=0
 while true ; do
 	let "r += 1"
 	csvline=$(grep ${r}, "${roi_csv}")
 	if [[ -z "${csvline}" ]] ; then break ; fi
+	if [[ "${r}" > 4 ]] ; then break ; fi
 	roiname=$(echo "${csvline}" | cut -f 2 -d ,)
 	minv=$(echo "${r} - 0.5" | bc -l)
 	maxv=$(echo "${r} + 0.5" | bc -l)
@@ -52,8 +53,10 @@ while true ; do
 	connmap "connmaps/Z_${roiname}_wremovegm.nii" "${roiname}" ${location}
 done
 
+
+# Combine into single page
 montage -mode concatenate \
-  conn_mni_BNST_L.png conn_mni_BNST_R.png \
+  conn_mni_*.png \
   -tile 1x -quality 100 -background black -gravity center \
   -border 10 -bordercolor white conn_mni.png
 
