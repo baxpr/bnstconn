@@ -16,5 +16,5 @@ project UNK_PROJ \
 subject UNK_SUBJ \
 session UNK_SESS \
 scan UNK_SCAN \
-magick_path /usr/local/bin
+magick_path /usr/local/bin \
 out_dir ../OUTPUTS
