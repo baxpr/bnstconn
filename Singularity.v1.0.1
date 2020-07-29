@@ -25,10 +25,10 @@ From: ubuntu:16.04
 
 %post
   apt-get update
-  apt-get install -y wget unzip zip xvfb ghostscript imagemagick    # Misc tools
-  apt-get install -y openjdk-8-jre                                  # Matlab
-  apt-get install -y libopenblas-base language-pack-en              # FSL
-  apt-get install -y libglu1-mesa                                   # Freeview
+  apt-get install -y wget unzip zip xvfb ghostscript imagemagick bc   # Misc tools
+  apt-get install -y openjdk-8-jre                                    # Matlab
+  apt-get install -y libopenblas-base language-pack-en                # FSL
+  apt-get install -y libglu1-mesa                                     # Freeview
   
   # Fix imagemagick policy to allow PDF output. See https://usn.ubuntu.com/3785-1/
   sed -i 's/rights="none" pattern="PDF"/rights="read | write" pattern="PDF"/' \

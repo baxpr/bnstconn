@@ -15,7 +15,9 @@ writetable(Z,fullfile(out_dir,['Z_' tag '.csv']),'WriteRowNames',true);
 
 %% Connectivity maps
 connmap_dir = [out_dir '/connmaps'];
-mkdir(connmap_dir);
+if ~exist(connmap_dir,'dir')
+	mkdir(connmap_dir);
+end
 
 % Load fmri
 Vfmri = spm_vol(fmri_nii);

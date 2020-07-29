@@ -21,7 +21,8 @@ Yfmri = spm_read_vols(Vfmri);
 Yfmri = reshape(Yfmri,[],size(Yfmri,4))';
 
 % Extract mean time series
-roidata = table();
+nt = size(Yfmri,1);
+roidata = table(nan(nt,1),nan(nt,1),'VariableNames',roi_info.Region(:)');
 for r = 1:height(roi_info)
 	voxelinds = Yroi(:)==roi_info.Label(r);
 	voxeldata = Yfmri(:,voxelinds);

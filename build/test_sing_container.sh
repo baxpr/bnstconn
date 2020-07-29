@@ -8,7 +8,7 @@ singularity run --cleanenv --contain \
   --bind INPUTS:/INPUTS \
   --bind OUTPUTS:/OUTPUTS \
   --bind freesurfer_license.txt:/usr/local/freesurfer/license.txt \
-  mniconn-v1.0.0.simg \
+  baxpr-mniconn-master-v1.0.0.simg \
   wroi_niigz BNST_LR.nii.gz \
   wremovegm_niigz /INPUTS/filtered_removegm_noscrub_wadfmri.nii.gz \
   wkeepgm_niigz /INPUTS/filtered_keepgm_noscrub_wadfmri.nii.gz \
