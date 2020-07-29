@@ -11,5 +11,5 @@ Computes functional connectivity maps and matrices for a specified set of ROIs.
 ## Pipeline
 
 - Resample the ROI image to match the fMRI. It's assumed both are already aligned and in MNI space.
-
-- 
+- Extract mean time series from the supplied fMRI for each ROI in the ROI image.
+- Compute functional connectivity: R, the correlation coefficient; and Z, the Fisher transformed correlation, atanh(R) * sqrt(N-3) where N is number of time points.
