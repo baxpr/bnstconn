@@ -31,7 +31,7 @@ addOptional(P,'scan','UNK_SCAN');
 % Change paths to match test environment if needed
 addOptional(P,'magick_path','/usr/bin');
 addOptional(P,'src_path','/opt/mniconn/src');
-addOptional(P,'fsl_path','/usr/local/fsl/bin');
+addOptional(P,'fsl_path','/usr/local/fsl');
 
 % Where to store outputs
 addOptional(P,'out_dir','../OUTPUTS');

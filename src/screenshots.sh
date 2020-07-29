@@ -5,6 +5,8 @@
 export FREESURFER_HOME=/usr/local/freesurfer
 . $FREESURFER_HOME/SetUpFreeSurfer.sh
 
+. ${FSLDIR}/etc/fslconf/fsl.sh
+
 # MNI space connectivity maps
 ss_conn_mni.sh
 

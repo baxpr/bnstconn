@@ -3,7 +3,7 @@
 function connmap {
 	# 1 IMG
 	# 2 name
-	# 3-5 x,y,z
+	# 3-5 x y z
 	# connmap sZ_LHIPP_wremovegm.nii hipp -25 -20 -16
 
 	freeview \
@@ -40,14 +40,15 @@ cd ${OUT}
 
 # Make images for each seed ROI
 r=0
-while 1 ; do
+while true ; do
 	let "r += 1"
 	csvline=$(grep ${r}, "${roi_csv}")
-	if [[ -z "${csvline}" ]] ; then break ; done
+	if [[ -z "${csvline}" ]] ; then break ; fi
 	roiname=$(echo "${csvline}" | cut -f 2 -d ,)
 	minv=$(echo "${r} - 0.5" | bc -l)
 	maxv=$(echo "${r} + 0.5" | bc -l)
 	location=$(fslstats "${roi_nii}" -l $minv -u $maxv -c)
+	echo Seed image ${r} ${roiname} ${minv} ${maxv} ${location}
 	connmap "connmaps/Z_${roiname}_wremovegm.nii" "${roiname}" ${location}
 done
 

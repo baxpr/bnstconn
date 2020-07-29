@@ -26,7 +26,7 @@ conncompute(roidata_keepgm,wkeepgm_nii,inp.out_dir,'wkeepgm');
 
 % Generate PDF report
 disp('Make PDF   ------------------------------------------------------------------------')
-make_pdf(inp.out_dir,wmeanfmri_nii,wt1_nii,inp.magick_path,inp.src_path,inp.fsl_path, ...
+make_pdf(inp.out_dir,wmeanfmri_nii,wt1_nii,rwroi_nii,roi_csv,inp.magick_path,inp.src_path,inp.fsl_path, ...
 	inp.project,inp.subject,inp.session,inp.scan);
 
 % Organize and clean up
