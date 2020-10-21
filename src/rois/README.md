@@ -18,7 +18,7 @@ Farb NA, Segal ZV, Anderson AK. Attentional modulation of primary interoceptive 
 
 ## vmPFC
 
-A 10mm sphere surrounding the peak point of BNST-vmPFC connectivity (0,53,-9) mm from Avery et al 2014. The sphere was then divided into left and right hemisphere sections.
+A 10mm sphere surrounding a peak point of BNST-vmPFC connectivity from Avery et al 2014, (0,53,-9) mm. The sphere was then divided into left and right hemisphere sections.
 
 Avery SN, Clauss JA, Winder DG, Woodward N, Heckers S, Blackford JU. BNST neurocircuitry in humans. Neuroimage. 2014;91:311-323. doi:10.1016/j.neuroimage.2014.01.017
 
