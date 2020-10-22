@@ -2,19 +2,27 @@
 
 ## Amygdala HO50
 
+From the Harvard-Oxford atlas, https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases
+
 ## BNST
 
 Avery SN, Clauss JA, Winder DG, Woodward N, Heckers S, Blackford JU. BNST neurocircuitry in humans. Neuroimage. 2014;91:311-323. doi:10.1016/j.neuroimage.2014.01.017
 
+## Hippocampus_Ant HO
 
-## Hippocampus_Ant HO, Hypothalamus
+Anterior portion (Woolard 2012) of the Harvard-Oxford atlas hippocampus (https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases)
 
+Woolard AA, Heckers S. Anatomical and functional correlates of human hippocampal volume asymmetry. Psychiatry Res. 2012;201(1):48-53. doi:10.1016/j.pscychresns.2011.07.016
 
+## Hypothalamus
+
+Manual segmentation by J. Blackford
 
 ## Insula_anterior
 
-Farb NA, Segal ZV, Anderson AK. Attentional modulation of primary interoceptive and exteroceptive cortices. Cereb Cortex. 2013;23(1):114-126. doi:10.1093/cercor/bhr385
+Combination of the 6 anterior sub-regions from
 
+Farb NA, Segal ZV, Anderson AK. Attentional modulation of primary interoceptive and exteroceptive cortices. Cereb Cortex. 2013;23(1):114-126. doi:10.1093/cercor/bhr385
 
 ## vmPFC
 
@@ -23,9 +31,3 @@ A 10mm sphere surrounding a peak point of BNST-vmPFC connectivity from Avery et 
 Avery SN, Clauss JA, Winder DG, Woodward N, Heckers S, Blackford JU. BNST neurocircuitry in humans. Neuroimage. 2014;91:311-323. doi:10.1016/j.neuroimage.2014.01.017
 
 
-
-BNST (Jenni's drawn mask)
-Anterior Insula (Farb et al 2013)
-Hypothalamus and anterior hippocampus (Harvard Oxford - Makris et al 2006)
-Amygdala (probabilistic atlas - Amunts et al., 2005)
-vmPFC mask (10mm sphere surrounding the peak point of BNST-vmPFC connectivity [x = 0, y = 53, z = -9] from Avery et al., 2014)
