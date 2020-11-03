@@ -6,7 +6,7 @@ P = inputParser;
 
 % ROI file - must be in src/rois and have matching -label.csv with ROI
 % names. Must be MNI space
-addOptional(P,'wroi_niigz','BNST_LR.nii.gz')
+addOptional(P,'wroi_niigz','ABHHIP_LR_LR.nii.gz')
 
 % Preprocessed fMRI, outputs from connprep. MNI space only
 addOptional(P,'wremovegm_niigz','../INPUTS/filtered_removegm_noscrub_wadfmri.nii.gz');
