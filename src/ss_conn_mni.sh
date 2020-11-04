@@ -38,13 +38,12 @@ function connmap {
 
 cd ${OUT}
 
-# Make images for each seed ROI (up to four)
+# Make images for each seed ROI
 r=0
 while true ; do
 	let "r += 1"
-	csvline=$(grep ${r}, "${roi_csv}")
+	csvline=$(grep -- ^${r}, "${roi_csv}")
 	if [[ -z "${csvline}" ]] ; then break ; fi
-	if [[ "${r}" > 4 ]] ; then break ; fi
 	roiname=$(echo "${csvline}" | cut -f 2 -d ,)
 	minv=$(echo "${r} - 0.5" | bc -l)
 	maxv=$(echo "${r} + 0.5" | bc -l)
