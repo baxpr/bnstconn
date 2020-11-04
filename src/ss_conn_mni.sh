@@ -53,9 +53,8 @@ while true ; do
 done
 
 
-# Combine into single page
+# Combine into single pages, in sets of 4
 montage -mode concatenate \
-  conn_mni_*.png \
-  -tile 1x -quality 100 -background black -gravity center \
-  -border 10 -bordercolor white conn_mni.png
-
+	conn_mni_*.png \
+	-tile 1x4 -quality 100 -background black -gravity center \
+	-border 10 -bordercolor white shot_conn_mni.png
