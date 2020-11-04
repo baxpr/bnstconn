@@ -18,7 +18,7 @@
 SPM_PATH=/wkdir/spm12_r7487
 
 # We may need to add Matlab to the path on the compilation machine
-export PATH=/usr/local/MATLAB/R2017a/bin:${PATH}
+export PATH=/usr/local/MATLAB/R2019b/bin:${PATH}
 
 # SPM external stuff often causes issues with compilation. We don't need any of it 
 # here, so delete. Example: fieldtrip module has some compatibility functions that
