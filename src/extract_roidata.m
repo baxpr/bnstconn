@@ -6,10 +6,13 @@ Yroi = spm_read_vols(Vroi);
 roi_vals = unique(Yroi(:));
 roi_vals = roi_vals(roi_vals~=0);
 
-% Check against ROI label file
+% Check against ROI label file. Label columns if matlab detects them as
+% unlabeled. If labeled, need to be Label and Region.
 roi_info = readtable(roi_csv);
-roi_info.Properties.VariableNames{'Var1'} = 'Label';
-roi_info.Properties.VariableNames{'Var2'} = 'Region';
+if strcmp(roi_info.Properties.VariableNames{1},'Var1')
+	roi_info.Properties.VariableNames{'Var1'} = 'Label';
+	roi_info.Properties.VariableNames{'Var2'} = 'Region';
+end
 
 if ~all(sort(roi_vals) == sort(roi_info.Label))
 	error('Mismatch in ROI values')

@@ -4,9 +4,16 @@ function mniconn(varargin)
 %% Parse inputs
 P = inputParser;
 
-% ROI file - must be in src/rois and have matching -label.csv with ROI
-% names. Must be MNI space
+% ROI file, MNI space. Two options:
+%
+%   (1) Filename with no path, e.g. 'ABHHIP_LR.nii.gz'. In this case the
+%       file is assumed to exist in the container with a matching label file
+%       present e.g. 'ABHHIP_LR-label.nii.gz'.
+%
+%   (2) Filename with path. In this case the file is provided as input and
+%       the wroilabel_csv must also be provided with ROI labels.
 addOptional(P,'wroi_niigz','ABHHIP_LR.nii.gz')
+addOptional(P,'wroilabel_csv','')
 
 % Preprocessed fMRI, outputs from connprep. MNI space only
 addOptional(P,'wremovegm_niigz','../INPUTS/filtered_removegm_noscrub_wadfmri.nii.gz');
@@ -20,7 +27,10 @@ addOptional(P,'wbrainmask_niigz','../INPUTS/rwmask.nii.gz');
 addOptional(P,'wt1_niigz','../INPUTS/wmt1.nii.gz');
 
 % Smoothing to apply to connectivity maps
-addOptional(P,'fwhm','6');
+%addOptional(P,'fwhm','6');
+
+% Output connectivity maps or no?
+addOptional(P,'connmaps_out','yes')
 
 % Subject info if on XNAT
 addOptional(P,'project','UNK_PROJ');

@@ -18,8 +18,8 @@ roidata_keepgm = extract_roidata(wkeepgm_nii,rwroi_nii,roi_csv,inp.out_dir,'wkee
 
 % Compute connectivity maps and matrices
 disp('Connectivity   --------------------------------------------------------------------')
-conncompute(roidata_removegm,wremovegm_nii,inp.out_dir,'wremovegm');
-conncompute(roidata_keepgm,wkeepgm_nii,inp.out_dir,'wkeepgm');
+conncompute(roidata_removegm,wremovegm_nii,inp.out_dir,'wremovegm',inp.connmaps_out);
+conncompute(roidata_keepgm,wkeepgm_nii,inp.out_dir,'wkeepgm',inp.connmaps_out);
 
 % Mask files to a (lenient) brain mask to save space
  mask_mni(inp.out_dir)

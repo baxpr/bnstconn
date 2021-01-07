@@ -1,4 +1,4 @@
-function conncompute(roidata,fmri_nii,out_dir,tag)
+function conncompute(roidata,fmri_nii,out_dir,tag,connmaps_out)
 
 %% Connectivity matrix
 R = corr(table2array(roidata));
@@ -18,6 +18,9 @@ connmap_dir = [out_dir '/connmaps'];
 if ~exist(connmap_dir,'dir')
 	mkdir(connmap_dir);
 end
+
+% Don't actually make maps unless requested
+if ~strcmp(connmaps_out,'yes'), return, end
 
 % Load fmri
 Vfmri = spm_vol(fmri_nii);
