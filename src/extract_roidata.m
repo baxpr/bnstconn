@@ -14,8 +14,20 @@ if strcmp(roi_info.Properties.VariableNames{1},'Var1')
 	roi_info.Properties.VariableNames{'Var2'} = 'Region';
 end
 
+% Check for a couple of problem situations
 if ~all(sort(roi_vals) == sort(roi_info.Label))
-	error('Mismatch in ROI values')
+	error('ROI labels in label file do not match image file')
+end
+if numel(roi_vals) ~= numel(unique(roi_vals))
+	error('ROI label values must be unique')
+end
+
+% If ROI names aren't unique, make them so
+if numel(roi_info.Region) ~= numel(unique(roi_info.region))
+	for h = 1:height(roi_info)
+		roi_info.Region{h} = sprintf('r%04d_%s', ...
+			roi_info.Label(h),roi_info.Region{h});
+	end
 end
 
 % Load fmri and reshape to time x voxel
