@@ -23,7 +23,7 @@ if numel(roi_vals) ~= numel(unique(roi_vals))
 end
 
 % If ROI names aren't unique, make them so
-if numel(roi_info.Region) ~= numel(unique(roi_info.region))
+if numel(roi_info.Region) ~= numel(unique(roi_info.Region))
 	for h = 1:height(roi_info)
 		roi_info.Region{h} = sprintf('r%04d_%s', ...
 			roi_info.Label(h),roi_info.Region{h});
