@@ -1,11 +1,11 @@
-function organize_outputs(out_dir,rwroi_nii,roi_csv)
+function organize_outputs(out_dir,rwroi_nii,roi_csv,connmaps_out)
 
 % PDF
 system(['cd ' out_dir ' && mkdir PDF && mv mniconn.pdf PDF']);
 
 
 % Unsmoothed connmaps
-if strcmp(inp.connmaps_out,'yes')
+if strcmp(connmaps_out,'yes')
 	system(['cd ' out_dir ' && ' ...
 		' mkdir ZMAPS_KEEPGM_MNI && ' ...
 		' mv connmaps/Z_*_wkeepgm.nii ZMAPS_KEEPGM_MNI && ' ...

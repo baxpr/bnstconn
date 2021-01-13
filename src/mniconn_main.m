@@ -34,5 +34,5 @@ make_pdf(inp.out_dir,wmeanfmri_nii,wt1_nii,rwroi_nii,roi_csv, ...
 
 % Organize and clean up
 disp('Organize outputs   ----------------------------------------------------------------')
-organize_outputs(inp.out_dir,rwroi_nii,roi_csv);
+organize_outputs(inp.out_dir,rwroi_nii,roi_csv,inp.connmaps_out);
 
