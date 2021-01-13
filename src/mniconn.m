@@ -42,6 +42,7 @@ addOptional(P,'scan','UNK_SCAN');
 addOptional(P,'magick_path','/usr/bin');
 addOptional(P,'src_path','/opt/mniconn/src');
 addOptional(P,'fsl_path','/usr/local/fsl/bin');
+addOptional(P,'fs_path','/usr/local/freesurfer');
 
 % Where to store outputs
 addOptional(P,'out_dir','../OUTPUTS');

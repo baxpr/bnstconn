@@ -21,13 +21,15 @@ disp('Connectivity   -----------------------------------------------------------
 conncompute(roidata_removegm,wremovegm_nii,inp.out_dir,'wremovegm',inp.connmaps_out);
 conncompute(roidata_keepgm,wkeepgm_nii,inp.out_dir,'wkeepgm',inp.connmaps_out);
 
-% Mask files to a (lenient) brain mask to save space
- mask_mni(inp.out_dir)
+% Mask files to a (lenient) brain mask to save space, if we made maps
+if strcmp(inp.connmaps_out,'yes')
+	mask_mni(inp.out_dir)
+end
 
 % Generate PDF report
 disp('Make PDF   ------------------------------------------------------------------------')
 make_pdf(inp.out_dir,wmeanfmri_nii,wt1_nii,rwroi_nii,roi_csv, ...
-	inp.magick_path,inp.src_path,inp.fsl_path, ...
+	inp.magick_path,inp.src_path,inp.fsl_path,inp.fs_path,inp.connmaps_out, ...
 	inp.project,inp.subject,inp.session,inp.scan);
 
 % Organize and clean up
