@@ -1,4 +1,4 @@
-function roidata = extract_roidata(wfmri_nii,rwroi_nii,roi_csv,out_dir,tag)
+function [roidata,roi_csv] = extract_roidata(wfmri_nii,rwroi_nii,roi_csv,out_dir,tag)
 
 % Load and count ROIs
 Vroi = spm_vol(rwroi_nii);
@@ -47,6 +47,11 @@ roidata.Properties.VariableNames = roi_info.Region(:)';
 % Save ROI data to file
 roidata_csv = [out_dir '/roidata_' tag '.csv'];
 writetable(roidata,roidata_csv)
+
+% Save possibly updated ROI info
+[~,n,e] = fileparts(roi_csv);
+roi_csv = fullfile(out_dir,[n e]);
+writetable(roi_info,roi_csv)
 
 return
 
