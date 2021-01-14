@@ -54,6 +54,7 @@ cd ${OUT}
 
 while IFS= read -r csvline; do
 	roinum=$(echo "${csvline}" | cut -f 1 -d ,)
+	if [[ "${roinum}" == "Label" ]] ; then continue ; fi
 	roiname=$(echo "${csvline}" | cut -f 2 -d ,)
 	minv=$(echo "${roinum} - 0.5" | bc -l)
 	maxv=$(echo "${roinum} + 0.5" | bc -l)
