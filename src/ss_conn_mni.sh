@@ -53,9 +53,10 @@ cd ${OUT}
 #done
 
 while IFS= read -r csvline; do
+	roinum=$(echo "${csvline}" | cut -f 1 -d ,)
 	roiname=$(echo "${csvline}" | cut -f 2 -d ,)
-	minv=$(echo "${r} - 0.5" | bc -l)
-	maxv=$(echo "${r} + 0.5" | bc -l)
+	minv=$(echo "${roinum} - 0.5" | bc -l)
+	maxv=$(echo "${roinum} + 0.5" | bc -l)
 	location=$(fslstats "${roi_nii}" -l $minv -u $maxv -c)
 	echo Seed image ${r} ${roiname} ${minv} ${maxv} ${location}
 	connmap "connmaps/Z_${roiname}_wremovegm.nii" "${roiname}" ${location}
