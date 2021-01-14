@@ -14,13 +14,14 @@ writetable(Z,fullfile(out_dir,['Z_' tag '.csv']),'WriteRowNames',true);
 
 
 %% Connectivity maps
+
+% Don't actually make maps unless requested
+if ~strcmp(connmaps_out,'yes'), return, end
+
 connmap_dir = [out_dir '/connmaps'];
 if ~exist(connmap_dir,'dir')
 	mkdir(connmap_dir);
 end
-
-% Don't actually make maps unless requested
-if ~strcmp(connmaps_out,'yes'), return, end
 
 % Load fmri
 Vfmri = spm_vol(fmri_nii);
