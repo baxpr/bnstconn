@@ -3,7 +3,7 @@
 # How the combined ROI image was created using FSL.
 
 # Make label file
-cat > ABHHIP_LR-labels.csv <<HERE
+cat > AABHHIP_LR-labels.csv <<HERE
 1,BNST_L
 2,BNST_R
 3,Amygdala_L_HO50
@@ -29,8 +29,8 @@ fslmaths Hypothalamus_L        -bin -mul  7 -add tmp tmp
 fslmaths Hypothalamus_R        -bin -mul  8 -add tmp tmp
 fslmaths vmPFC_L               -bin -mul 11 -add tmp tmp
 fslmaths vmPFC_R               -bin -mul 12 -add tmp tmp
-fslmaths rACC_left             -bin -mul 13 -add tmp tmp
-fslmaths rACC_right            -bin -mul 14 -add tmp AAHHP_2mm
+fslmaths ACC_left              -bin -mul 13 -add tmp tmp
+fslmaths ACC_right             -bin -mul 14 -add tmp AAHHP_2mm
 rm tmp.nii.gz
 
 # Resample to the BNST space
