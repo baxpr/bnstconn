@@ -29,9 +29,12 @@ fslmaths Hypothalamus_L        -bin -mul  7 -add tmp tmp
 fslmaths Hypothalamus_R        -bin -mul  8 -add tmp tmp
 fslmaths vmPFC_L               -bin -mul 11 -add tmp tmp
 fslmaths vmPFC_R               -bin -mul 12 -add tmp tmp
-fslmaths ACC_left              -bin -mul 13 -add tmp tmp
-fslmaths ACC_right             -bin -mul 14 -add tmp AAHHP_2mm
-rm tmp.nii.gz
+
+# ACC overlaps by a vew voxels with vmPFC - give vmPFC priority
+fslmaths tmp -bin -sub 1 -mul -1 tmpmask
+fslmaths ACC_left  -bin -mas tmpmask -mul 13 -add tmp tmp
+fslmaths ACC_right -bin -mas tmpmask -mul 14 -add tmp AAHHP_2mm
+rm tmp.nii.gz tmpmask.nii.gz
 
 # Resample to the BNST space
 for f in AAHHP_2mm Insula_anterior_left Insula_anterior_right ; do
