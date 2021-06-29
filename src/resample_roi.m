@@ -1,4 +1,4 @@
-function [rwroi_nii,roi_csv] = resample_roi(wroi_nii,wmeanfmri_nii,roi_csv)
+function [rwroi_nii,roi_csv] = resample_roi(wroi_nii,wmeanfmri_nii,roi_csv,out_dir)
 
 %% Resample ROI image
 
