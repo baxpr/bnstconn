@@ -49,7 +49,8 @@ roidata.Properties.VariableNames = roi_info.Region(:)';
 
 % Save ROI data to file
 roidata_csv = [out_dir '/roidata_' tag '.csv'];
-writetable(roidata,roidata_csv)
+outcsv = roidata_csv(:,{'Label','Region'});
+writetable(roidata,outcsv)
 
 % Save updated ROI info
 [~,n,e] = fileparts(roi_csv);

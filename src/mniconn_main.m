@@ -13,7 +13,7 @@ disp('ROI operations   ---------------------------------------------------------
 rwroi_nii = resample_roi(wroi_nii,wmeanfmri_nii);
 
 % Extract ROI time series from preprocessed fMRI
-[roidata_removegm,roi_csv] = extract_roidata(wremovegm_nii,rwroi_nii,roi_csv,inp.out_dir,'wremovegm');
+roidata_removegm = extract_roidata(wremovegm_nii,rwroi_nii,roi_csv,inp.out_dir,'wremovegm');
 roidata_keepgm = extract_roidata(wkeepgm_nii,rwroi_nii,roi_csv,inp.out_dir,'wkeepgm');
 
 % Compute connectivity maps and matrices

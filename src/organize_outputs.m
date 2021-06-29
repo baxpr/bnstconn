@@ -32,6 +32,7 @@ end
 % Conn matrix
 system(['cd ' out_dir ' && mkdir RMATRIX && mv R_*.csv RMATRIX']);
 system(['cd ' out_dir ' && mkdir ZMATRIX && mv Z_*.csv ZMATRIX']);
+system(['cd ' out_dir ' && mkdir DFMATRIX && mv ?df_*.csv DFMATRIX']);
 
 
 % ROI images
