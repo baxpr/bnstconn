@@ -10,7 +10,7 @@ spm_jobman('initcfg');
 
 % Resample ROI image to fMRI space
 disp('ROI operations   ------------------------------------------------------------------')
-rwroi_nii = resample_roi(wroi_nii,wmeanfmri_nii);
+[rwroi_nii,roi_csv] = resample_roi(wroi_nii,wmeanfmri_nii,roi_csv);
 
 % Extract ROI time series from preprocessed fMRI
 roidata_removegm = extract_roidata(wremovegm_nii,rwroi_nii,roi_csv,inp.out_dir,'wremovegm');
