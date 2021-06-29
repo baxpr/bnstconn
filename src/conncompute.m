@@ -2,13 +2,13 @@ function conncompute(roidata,fmri_nii,out_dir,tag,connmaps_out)
 
 %% Connectivity matrix
 
-% Correlation
+% Correlation and Fisher transform
 R = corr(table2array(roidata));
+Z = atanh(R) * sqrt(size(roidata,1)-3);
+
 R = setnames(R,roidata);
 writetable(R,fullfile(out_dir,['R_' tag '.csv']),'WriteRowNames',true);
 
-% Fisher transform
-Z = atanh(R) * sqrt(size(roidata,1)-3);
 Z = setnames(Z,roidata);
 writetable(Z,fullfile(out_dir,['Z_' tag '.csv']),'WriteRowNames',true);
 
