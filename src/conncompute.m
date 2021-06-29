@@ -13,7 +13,7 @@ Z = setnames(Z,roidata);
 writetable(Z,fullfile(out_dir,['Z_' tag '.csv']),'WriteRowNames',true);
 
 % Autocorrelation-corrected (https://github.com/asoroosh/xDF)
-[Vdf,S] = xDF(table2array(roidata)');
+[Vdf,S] = xDF(table2array(roidata)',size(roidata,1),'truncate','adaptive');
 Pdf = S.p;
 Zdf = S.z;
 Vdf = setnames(Vdf,roidata);
