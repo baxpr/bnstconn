@@ -1,16 +1,27 @@
 function conncompute(roidata,fmri_nii,out_dir,tag,connmaps_out)
 
 %% Connectivity matrix
+
+% Correlation
 R = corr(table2array(roidata));
-Z = atanh(R) * sqrt(size(roidata,1)-3);
-R = array2table(R);
-Z = array2table(Z);
-R.Properties.VariableNames = roidata.Properties.VariableNames;
-R.Properties.RowNames = roidata.Properties.VariableNames;
-Z.Properties.VariableNames = roidata.Properties.VariableNames;
-Z.Properties.RowNames = roidata.Properties.VariableNames;
+R = setnames(R,roidata);
 writetable(R,fullfile(out_dir,['R_' tag '.csv']),'WriteRowNames',true);
+
+% Fisher transform
+Z = atanh(R) * sqrt(size(roidata,1)-3);
+Z = setnames(Z,roidata);
 writetable(Z,fullfile(out_dir,['Z_' tag '.csv']),'WriteRowNames',true);
+
+% Autocorrelation-corrected (https://github.com/asoroosh/xDF)
+[Vdf,S] = xDF(table2array(roidata)');
+Pdf = S.p;
+Zdf = S.z;
+Vdf = setnames(Vdf,roidata);
+Pdf = setnames(Pdf,roidata);
+Zdf = setnames(Zdf,roidata);
+writetable(Vdf,fullfile(out_dir,['Vdf_' tag '.csv']),'WriteRowNames',true);
+writetable(Pdf,fullfile(out_dir,['Pdf_' tag '.csv']),'WriteRowNames',true);
+writetable(Zdf,fullfile(out_dir,['Zdf_' tag '.csv']),'WriteRowNames',true);
 
 
 %% Connectivity maps
@@ -47,4 +58,11 @@ for r = 1:width(roidata)
 %	spm_smooth(Vout,sfname,str2double(fwhm));
 	
 end
+
+
+function M = setnames(M,roidata)
+M = array2table(M);
+M.Properties.VariableNames = roidata.Properties.VariableNames;
+M.Properties.RowNames = roidata.Properties.VariableNames;
+
 
