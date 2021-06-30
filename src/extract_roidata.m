@@ -3,6 +3,7 @@ function roidata = extract_roidata(wfmri_nii,rwroi_nii,roi_csv,out_dir,tag)
 % Load and count ROIs from the image
 Vroi = spm_vol(rwroi_nii);
 Yroi = spm_read_vols(Vroi);
+Yroi(isnan(Yroi(:))) = 0;
 roi_vals = unique(Yroi(:));
 roi_vals = roi_vals(roi_vals~=0);
 

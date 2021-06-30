@@ -2,7 +2,9 @@ function [wremovegm_nii,wkeepgm_nii,wmeanfmri_nii,wt1_nii,wroi_nii,roi_csv] ...
 	= prep_files(inp)
 
 % Terrible hack with eval again to copy files to out_dir and unzip
-for tag = {'wremovegm','wkeepgm','wbrainmask','wmeanfmri','wt1'}
+for tag = {'wremovegm','wkeepgm','wmeanfmri','wt1'}
+	disp(eval(['inp.' tag{1} '_niigz']))
+	disp([inp.out_dir '/' tag{1} '.nii.gz'])
 	copyfile(eval(['inp.' tag{1} '_niigz']),[inp.out_dir '/' tag{1} '.nii.gz']);
 	system(['gunzip -f ' inp.out_dir '/' tag{1} '.nii.gz']);
 	cmd = [tag{1} '_nii = [inp.out_dir ''/'' tag{1} ''.nii''];'];
