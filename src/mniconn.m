@@ -20,10 +20,7 @@ addOptional(P,'wremovegm_niigz','../INPUTS/filtered_removegm_noscrub_wadfmri.nii
 addOptional(P,'wkeepgm_niigz','../INPUTS/filtered_keepgm_noscrub_wadfmri.nii.gz');
 addOptional(P,'wmeanfmri_niigz','../INPUTS/wmeanadfmri.nii.gz');
 
-% Useful masks from connprep
-addOptional(P,'wbrainmask_niigz','../INPUTS/rwmask.nii.gz');
-
-% Bias corrected T1 from cat12
+% T1, e.g. bias corrected T1 from cat12
 addOptional(P,'wt1_niigz','../INPUTS/wmt1.nii.gz');
 
 % Smoothing to apply to connectivity maps

@@ -1,7 +1,7 @@
 *~
 local*
-INPUTS
-OUTPUTS
+INPUTS*
+OUTPUTS*
 error.log
 freesurfer_license.txt
 *.simg
