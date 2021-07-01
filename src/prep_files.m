@@ -12,23 +12,25 @@ for tag = {'wremovegm','wkeepgm','wmeanfmri','wt1'}
 end
 
 % And we'll grab the ROI file separately
-[p,n,e] = fileparts(inp.wroi_niigz);
 
-if isempty(p)
+if isempty(fileparts(inp.wroi_niigz))
 	% Use an ROI file from container if no path provided
-	copyfile(which(inp.wroi_niigz),inp.out_dir);
-	system(['gunzip -f ' inp.out_dir '/' inp.wroi_niigz]);
-	wroi_nii = strrep(fullfile(inp.out_dir,inp.wroi_niigz),'.gz','');
+	wroi_niigz = fullfile(inp.out_dir,'roi.nii.gz');
+	copyfile(which(inp.wroi_niigz),wroi_niigz);
+	system(['gunzip -f ' wroi_niigz]);
+	wroi_nii = strrep(wroi_niigz,'.gz','');
 	[~,n2] = fileparts(wroi_nii);
 	roi_csv = [n2 '-labels.csv'];
-	copyfile(which(roi_csv),inp.out_dir);
+	copyfile(which(roi_csv),fullfile(inp.out_dir,roi_csv));
 	roi_csv = fullfile(inp.out_dir,roi_csv); 
 else
 	% Otherwise use externally supplied ROI file
-	copyfile(inp.wroi_niigz,inp.out_dir);
-	system(['gunzip -f ' inp.out_dir '/' n e]);
-	wroi_nii = fullfile(inp.out_dir,n);
-	copyfile(inp.wroilabel_csv,inp.out_dir);
-	[~,n3,e3] = fileparts(inp.wroilabel_csv);
-	roi_csv = fullfile(inp.out_dir,[n3 e3]);
+	wroi_niigz = fullfile(inp.out_dir,'roi.nii.gz');
+	copyfile(inp.wroi_niigz,wroi_niigz);
+	system(['gunzip -f ' wroi_niigz]);
+	wroi_nii = strrep(wroi_niigz,'.gz','');
+	[~,n2] = fileparts(wroi_nii);
+	roi_csv = [n2 '-labels.csv'];
+	copyfile(inp.wroilabel_csv,fullfile(inp.out_dir,roi_csv));
+	roi_csv = fullfile(inp.out_dir,roi_csv);
 end
